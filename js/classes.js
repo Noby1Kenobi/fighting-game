@@ -71,6 +71,7 @@ class Fighter extends Sprite {
         this.sprites = sprites;
         this.dying = false;
         this.dead = false;
+        this.grounded = false;
 
         for (const sprite in this.sprites) {
             sprites[sprite].image = new Image();
@@ -104,6 +105,7 @@ class Fighter extends Sprite {
         if (this.position.y + this.height + this.velocity.y >= canvas.height - 96) {
             this.velocity.y = 0;
             this.position.y = canvas.height - 96 - this.height; // move fighter to ground level
+            this.grounded = true;
         } else {
             this.velocity.y += gravity;
         }
