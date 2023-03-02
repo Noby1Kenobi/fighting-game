@@ -29,16 +29,12 @@ const shop = new Sprite({
 // Create player object
 const player = new Fighter({
     position: {
-        x: 0,
-        y: 0
+        x: 50,
+        y: 200
     },
     velocity: {
         x: 0,
         y: 0
-    },
-    offset: {
-        x: 0,
-        y:0
     },
     imageSrc: './img/samuraiMack/Idle.png',
     framesMax: 8,
@@ -90,18 +86,14 @@ const player = new Fighter({
 // Create enemy object
 const enemy = new Fighter({
     position: {
-        x: 400,
-        y: 100
+        x: 900,
+        y: 200
     },
     velocity: {
         x: 0,
         y: 0
     },
     color: 'blue',
-    offset: {
-        x: -50,
-        y: 0
-    },
     imageSrc: './img/kenji/Idle.png',
     framesMax: 4,
     scale: 2.5,
