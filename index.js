@@ -217,30 +217,36 @@ function animate() {
         enemy.switchSprite('fall');
     }
 
-    // detect for player hit enemy collision
-    if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttacking && player.framesCurrent === 4) {
-        enemy.takeHit();
-        player.isAttacking = false;
-        gsap.to('#enemyHealth', { width: enemy.health + '%' });
+    // stop all attacks from player if dying (player at 0 health)
+    if (!player.dying) {
+        // detect for player hit enemy collision
+        if (rectangularCollision({ rectangle1: player, rectangle2: enemy }) && player.isAttacking && player.framesCurrent === 4) {
+            enemy.takeHit();
+            player.isAttacking = false;
+            gsap.to('#enemyHealth', { width: enemy.health + '%' });
+        }
+
+        // if player misses
+        if (player.isAttacking && player.framesCurrent === 4) {
+            player.isAttacking = false;
+        }
     }
 
-    // if player misses
-    if (player.isAttacking && player.framesCurrent === 4) {
-        player.isAttacking = false;
-    }
+    // stop all attacks from enemy if dying (enemy at 0 health)
+    if (!enemy.dying) {
+        // detect for enemy hit player collision
+        if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttacking && enemy.framesCurrent === 1) {
+            player.takeHit();
+            enemy.isAttacking = false;
+            gsap.to('#playerHealth', { width: player.health + '%' });
+        }
 
-    // detect for enemy hit player collision
-    if (rectangularCollision({ rectangle1: enemy, rectangle2: player }) && enemy.isAttacking && enemy.framesCurrent === 1) {
-        player.takeHit();
-        enemy.isAttacking = false;
-        gsap.to('#playerHealth', { width: player.health + '%' });
+        // if enemy misses
+        if (enemy.isAttacking && enemy.framesCurrent === 1) {
+            enemy.isAttacking = false;
+        }
     }
-
-    // if enemy misses
-    if (enemy.isAttacking && enemy.framesCurrent === 1) {
-        enemy.isAttacking = false;
-    }
-
+    
     // end game based on health
     if (enemy.health <= 0 || player.health <= 0) {
         determineWinner({ player, enemy, timerId });

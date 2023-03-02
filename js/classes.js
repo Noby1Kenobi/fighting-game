@@ -69,6 +69,7 @@ class Fighter extends Sprite {
         this.framesElapsed = 0;
         this.framesHold = 5;
         this.sprites = sprites;
+        this.dying = false;
         this.dead = false;
 
         for (const sprite in this.sprites) {
@@ -110,6 +111,7 @@ class Fighter extends Sprite {
 
         // check if dead
         if (this.health <= 0) {
+            this.dying = true;
             this.switchSprite('death');
         } else {
             this.switchSprite('takeHit');
