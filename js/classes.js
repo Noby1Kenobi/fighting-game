@@ -89,6 +89,14 @@ class Fighter extends Sprite {
         // draw attack box (DEBUG)
         // c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
 
+        // if fighter is dying, prevent them from moving or jumping
+        if (this.dying) {
+            this.velocity.x = 0;
+            if (this.velocity.y < 0) {  // allow gravity
+                this.velocity.y = 0;
+            }
+        }
+
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
 
