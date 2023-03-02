@@ -137,9 +137,12 @@ class Fighter extends Sprite {
 
         // overriding all other animations with the attack animation unless about to die
         if (sprite !== 'death' && this.image === this.sprites.attack1.image && this.framesCurrent < this.sprites.attack1.framesMax - 1) { return; }
-
+        
         // overriding when fighter gets hit
         if (this.image === this.sprites.takeHit.image && this.framesCurrent < this.sprites.takeHit.framesMax - 1) { return; }
+
+        // prevent idle and run animation when fighter is in the air
+        if ((sprite === 'idle' || sprite == 'run') && !this.grounded) { return; }
 
         switch (sprite) {
             case 'idle':

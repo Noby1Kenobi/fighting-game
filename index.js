@@ -190,8 +190,6 @@ function animate() {
         player.switchSprite('idle');
     }
 
-    // BUG: jump and fall animations are only showing the first frame because we switch between run/idle and jump/fall every frame,
-    // therefore reseting the frameCurrent to 0 every time we jump or fall
     if (player.velocity.y < 0) {
         player.switchSprite('jump');
     } else if (player.velocity.y > 0) {
@@ -209,8 +207,6 @@ function animate() {
         enemy.switchSprite('idle');
     }
 
-    // BUG: jump and fall animations are only showing the first frame because we switch between run/idle and jump/fall every frame,
-    // therefore reseting the frameCurrent to 0 every time we jump or fall
     if (enemy.velocity.y < 0) {
         enemy.switchSprite('jump');
     } else if (enemy.velocity.y > 0) {
