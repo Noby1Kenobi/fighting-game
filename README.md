@@ -20,4 +20,4 @@ The website can be seen [here](https://nobygames-fighting-game.netlify.app/).
 - Attack - Down Arrow
 
 ## References:
-- Website was developed using a tutorial from [chris courses](https://www.youtube.com/watch?v=vyqbNFMDRGQ)
+- Website was developed using a tutorial from [chris courses](https://chriscourses.com/courses)
